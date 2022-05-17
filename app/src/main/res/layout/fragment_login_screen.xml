@@ -81,6 +81,7 @@
         android:layout_marginTop="9dp"
         android:fontFamily="@font/roboto"
         android:text="Forgot Password?"
+        android:textSize="15sp"
         android:textAllCaps="false"
         android:textColor="#666666"
         app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
@@ -114,12 +115,13 @@
         android:id="@+id/facebookLoginBtn"
         android:layout_width="185dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="#385C8E"
         android:fontFamily="@font/roboto"
         android:text="Facebook"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/loginBtn"
-        tools:layout_editor_absoluteY="667dp"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -130,8 +132,8 @@
         android:fontFamily="@font/roboto"
         android:text="Google"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/facebookLoginBtn"
         app:layout_constraintEnd_toEndOf="@+id/loginBtn"
-        tools:layout_editor_absoluteY="669dp"
         tools:ignore="MissingConstraints" />
 
 
