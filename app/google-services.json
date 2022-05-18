@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "92919176281",
+    "project_id": "dgpaysit-bootcamp-project",
+    "storage_bucket": "dgpaysit-bootcamp-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92919176281:android:0cd97e24ee554a7a4e6548",
+        "android_client_info": {
+          "package_name": "com.kubilaybal.dgpaysitbootcampproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92919176281-l5q2pph3l861cul999uptp9vmcfb8q5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQlxMZhYKhETEr5UpFB3_nNVcqJY0btI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92919176281-l5q2pph3l861cul999uptp9vmcfb8q5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
