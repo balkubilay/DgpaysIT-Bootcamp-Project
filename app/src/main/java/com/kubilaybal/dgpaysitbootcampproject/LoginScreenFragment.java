@@ -35,18 +35,17 @@ public class LoginScreenFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         BaseViewModel viewModel = new ViewModelProvider(this).get(BaseViewModel.class);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false);
         View view = binding.getRoot();
         mAuth = FirebaseAuth.getInstance();
         login();
+        forgotPassword();
         return view;
     }
 
-    @Override
+/*    @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -54,7 +53,7 @@ public class LoginScreenFragment extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(), "Authentication success.",
                     Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     public void login() {
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {

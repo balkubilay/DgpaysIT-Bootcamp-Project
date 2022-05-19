@@ -2,63 +2,73 @@ package com.kubilaybal.dgpaysitbootcampproject;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ForgetPasswordFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.kubilaybal.dgpaysitbootcampproject.databinding.FragmentForgetPasswordBinding;
+
 public class ForgetPasswordFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ForgetPasswordFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ForgetPasswordFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ForgetPasswordFragment newInstance(String param1, String param2) {
-        ForgetPasswordFragment fragment = new ForgetPasswordFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private FragmentForgetPasswordBinding binding;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forget_password, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_forget_password, container, false);
+        View view = binding.getRoot();
+        mAuth = FirebaseAuth.getInstance();
+        forgotPassword();
+        alreadyHavAccount();
+        return view;
+    }
+
+    public void forgotPassword() {
+        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = String.valueOf(binding.editTextEmail.getText());
+                if (!email.isEmpty()) {
+                    mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                binding.editTextEmail.setText(null);
+                                Log.d("forgotPassword", "Email sent.");
+                                Toast.makeText(getActivity().getApplicationContext(), "Email sent", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Log.d("forgotPassword", "Email not found.");
+                                Toast.makeText(getActivity().getApplicationContext(), "Email not found", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }else {
+                    MainActivity.makeToast("Email is empty",getActivity().getApplicationContext());
+                }
+            }
+        });
+    }
+    public void alreadyHavAccount(){
+        binding.alreadyHavBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_forgetPasswordFragment_to_loginScreenFragment);
+            }
+        });
     }
 }
