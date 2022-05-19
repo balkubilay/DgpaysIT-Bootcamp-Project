@@ -1,5 +1,6 @@
 package com.kubilaybal.dgpaysitbootcampproject;
 
+import androidx.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,9 +20,9 @@ public class CoinsResponseModel {
     @SerializedName("algorithm")
     @Expose
     private String algorithm;
-/*    @SerializedName("network_hashrate")
-    @Expose
-    private Long networkHashrate;*/
+    /*    @SerializedName("network_hashrate")
+        @Expose
+        private Long networkHashrate;*/
 /*    @SerializedName("difficulty")
     @Expose
     private Long difficulty;*/
@@ -37,9 +38,9 @@ public class CoinsResponseModel {
     @SerializedName("price")
     @Expose
     private Double price;
-/*    @SerializedName("volume")
-    @Expose
-    private Double volume;*/
+    /*    @SerializedName("volume")
+        @Expose
+        private Double volume;*/
     @SerializedName("updated")
     @Expose
     private Integer updated;
@@ -148,5 +149,21 @@ public class CoinsResponseModel {
 
     public void setUpdated(Integer updated) {
         this.updated = updated;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "CoinsResponseModel{" +
+                "id='" + id + '\'' +
+                ", coin='" + coin + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", algorithm='" + algorithm + '\'' +
+                ", rewardUnit='" + rewardUnit + '\'' +
+                ", rewardBlock=" + rewardBlock +
+                ", price=" + price +
+                ", updated=" + updated +
+                '}';
     }
 }

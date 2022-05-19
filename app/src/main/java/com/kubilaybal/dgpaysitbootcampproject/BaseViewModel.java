@@ -1,43 +1,52 @@
 package com.kubilaybal.dgpaysitbootcampproject;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class BaseViewModel extends ViewModel {
     ApiService apiService;
-    public List<CoinsResponseModel> coinList = new ArrayList<>();
+    private MutableLiveData<List<CoinsResponseModel>> liveDataForCoinList = new MutableLiveData<>();
 
-    public void getCoins(){
+    public MutableLiveData<List<CoinsResponseModel>> getLiveData() {
+        return liveDataForCoinList;
+    }
+
+    public void getCoins() {
         apiService = RetrofitBuilder.getClient().create(ApiService.class);
+        apiService.coinList().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<CoinsResponseModel>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-        Call<List<CoinsResponseModel>> call = apiService.coinList();
-
-        call.enqueue(new Callback<List<CoinsResponseModel>>() {
-            @Override
-            public void onResponse(Call<List<CoinsResponseModel>> call, Response<List<CoinsResponseModel>> response) {
-                List<CoinsResponseModel> responseModels = new ArrayList<>();
-
-                System.out.println(response);
-                responseModels = response.body();
-                if (responseModels != null) {
-                    for (int i = 0; i<responseModels.size(); i++){
-                        System.out.println(""+responseModels.get(i).getCoin());
-                        coinList.add(responseModels.get(i));
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<List<CoinsResponseModel>> call, Throwable t) {
-                System.out.println(t.getLocalizedMessage());
+                    @Override
+                    public void onNext(List<CoinsResponseModel> coinsResponseModels) {
+                        for (int i = 0; i < coinsResponseModels.size(); i++) {
+                            System.out.println(coinsResponseModels.get(i).toString());
+                            System.out.println("" + coinsResponseModels.get(i).getCoin());
+                            MainActivity.coinList.add(coinsResponseModels.get(i));
+                            liveDataForCoinList.postValue(MainActivity.coinList);
+                        }
+                    }
 
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

@@ -9,7 +9,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static List<CoinsResponseModel> coinList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public static void makeToast(String text, Context context){
+    public static void makeToast(String text, Context context) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 }

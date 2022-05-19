@@ -1,12 +1,6 @@
 package com.kubilaybal.dgpaysitbootcampproject;
 
-import java.io.IOException;
-import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import retrofit2.Call;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,7 +13,7 @@ public class RetrofitBuilder {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(new OkHttpClient())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
             return retrofit;
         }

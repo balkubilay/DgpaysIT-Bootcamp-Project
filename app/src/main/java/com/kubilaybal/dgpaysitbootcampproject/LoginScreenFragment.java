@@ -28,7 +28,6 @@ public class LoginScreenFragment extends Fragment {
     private FragmentLoginScreenBinding binding;
     private FirebaseAuth mAuth;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,6 @@ public class LoginScreenFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        BaseViewModel viewModel = new ViewModelProvider(this).get(BaseViewModel.class);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false);
         View view = binding.getRoot();
         mAuth = FirebaseAuth.getInstance();
@@ -66,19 +64,17 @@ public class LoginScreenFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 Log.d("Login", "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Navigation.findNavController(view).navigate(R.id.action_loginScreenFragment_to_mainFragment);
                             } else {
-                                // If sign in fails, display a message to the user.
                                 Log.w("Login", "signInWithEmail:failure", task.getException());
                                 Toast.makeText(getActivity().getApplicationContext(), "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-                }else {
+                } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Email or Password is empty",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -86,7 +82,7 @@ public class LoginScreenFragment extends Fragment {
         });
     }
 
-    public void forgotPassword(){
+    public void forgotPassword() {
         binding.forgotPasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
