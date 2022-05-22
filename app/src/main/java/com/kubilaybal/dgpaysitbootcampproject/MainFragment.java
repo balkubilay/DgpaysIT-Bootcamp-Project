@@ -37,30 +37,35 @@ public class MainFragment extends Fragment {
         Observer<List<CoinsResponseModel>> listObserver = new Observer<List<CoinsResponseModel>>() {
             @Override
             public void onChanged(List<CoinsResponseModel> coinsResponseModels) {
-                binding.coinTextView.setText(coinsResponseModels.get(0).getCoin());
-                binding.coinTextView1.setText(coinsResponseModels.get(1).getCoin());
-                binding.coinTextView2.setText(coinsResponseModels.get(2).getCoin());
-                binding.coinTextView3.setText(coinsResponseModels.get(3).getCoin());
-
-                binding.coinLongTextView.setText(coinsResponseModels.get(0).getName());
-                binding.coinLongTextView1.setText(coinsResponseModels.get(1).getName());
-                binding.coinLongTextView2.setText(coinsResponseModels.get(2).getName());
-                binding.coinLongTextView3.setText(coinsResponseModels.get(3).getName());
-
-                binding.amountTextView.setText(String.valueOf(formatter.format(coinsResponseModels.get(0).getPrice())));
-                binding.amountTextView1.setText(String.valueOf(formatter.format(coinsResponseModels.get(1).getPrice())));
-                binding.amountTextView2.setText(String.valueOf(formatter.format(coinsResponseModels.get(2).getPrice())));
-                binding.amountTextView3.setText(String.valueOf(formatter.format(coinsResponseModels.get(3).getPrice())));
-
-                binding.textView.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(0).getPrice())));
-                binding.textView2.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(1).getPrice())));
-                binding.textView3.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(2).getPrice())));
-                binding.textView4.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(3).getPrice())));
-
+                getCoinsData(coinsResponseModels);
             }
         };
         viewModel.getLiveData().observe(getViewLifecycleOwner(), listObserver);
         return view;
+    }
+
+
+    public void getCoinsData(List<CoinsResponseModel> coinsResponseModels) {
+        binding.coinTextView1.setText(coinsResponseModels.get(0).getCoin());
+        binding.coinTextView2.setText(coinsResponseModels.get(1).getCoin());
+        binding.coinTextView3.setText(coinsResponseModels.get(2).getCoin());
+        binding.coinTextView4.setText(coinsResponseModels.get(3).getCoin());
+
+        binding.coinLongTextView1.setText(coinsResponseModels.get(0).getName());
+        binding.coinLongTextView2.setText(coinsResponseModels.get(1).getName());
+        binding.coinLongTextView3.setText(coinsResponseModels.get(2).getName());
+        binding.coinLongTextView4.setText(coinsResponseModels.get(3).getName());
+
+        binding.coinBottomPrice1.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(0).getPrice())));
+        binding.coinBottomPrice2.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(1).getPrice())));
+        binding.coinBottomPrice3.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(2).getPrice())));
+        binding.coinBottomPrice4.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(3).getPrice())));
+
+        binding.coinPriceText.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(0).getPrice())));
+        binding.coinPriceText2.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(1).getPrice())));
+        binding.coinPriceText3.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(2).getPrice())));
+        binding.coinPriceText4.setText(String.valueOf("$" + formatter.format(coinsResponseModels.get(3).getPrice())));
+
     }
 
 }

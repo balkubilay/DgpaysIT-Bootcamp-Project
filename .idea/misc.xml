@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kubil/AndroidStudioProjects/DgpaysITBootcampProject/app/src/main/res/drawable/ic_login_fragment_email_icon.xml" value="0.1785" />
         <entry key="..\:/Users/kubil/AndroidStudioProjects/DgpaysITBootcampProject/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/kubil/AndroidStudioProjects/DgpaysITBootcampProject/app/src/main/res/layout/fragment_forget_password.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/kubil/AndroidStudioProjects/DgpaysITBootcampProject/app/src/main/res/layout/fragment_login_screen.xml" value="0.22984972677595628" />

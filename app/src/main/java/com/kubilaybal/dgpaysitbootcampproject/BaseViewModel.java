@@ -1,5 +1,7 @@
 package com.kubilaybal.dgpaysitbootcampproject;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import java.util.List;
@@ -40,6 +42,7 @@ public class BaseViewModel extends ViewModel {
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.d("getCoins onError", e.getMessage());
 
                     }
 

@@ -44,7 +44,7 @@ public class LoginScreenFragment extends Fragment {
     }
 
 /*    @Override
-    public void onStart() {
+    public void onStart() {  //Login kontrolü yapılmak istenirse açılabilir
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -59,7 +59,7 @@ public class LoginScreenFragment extends Fragment {
             public void onClick(View view) {
                 String email = String.valueOf(binding.editTextEmail.getText());
                 String password = String.valueOf(binding.editTextPassword.getText());
-                if (!email.isEmpty() || !password.isEmpty()) {
+                if (!email.isEmpty() && !password.isEmpty()) {
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,14 +69,13 @@ public class LoginScreenFragment extends Fragment {
                                 Navigation.findNavController(view).navigate(R.id.action_loginScreenFragment_to_mainFragment);
                             } else {
                                 Log.w("Login", "signInWithEmail:failure", task.getException());
-                                Toast.makeText(getActivity().getApplicationContext(), "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                MainActivity.makeToast("Authentication failed.",getActivity().getApplicationContext());
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Email or Password is empty",
-                            Toast.LENGTH_SHORT).show();
+                    MainActivity.makeToast("Email or Password is empty",getActivity().getApplicationContext());
+
                 }
             }
         });

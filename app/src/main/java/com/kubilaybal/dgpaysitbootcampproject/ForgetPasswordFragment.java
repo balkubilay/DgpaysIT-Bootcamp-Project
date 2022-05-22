@@ -50,10 +50,10 @@ public class ForgetPasswordFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 binding.editTextEmail.setText(null);
                                 Log.d("forgotPassword", "Email sent.");
-                                Toast.makeText(getActivity().getApplicationContext(), "Email sent", Toast.LENGTH_SHORT).show();
+                                MainActivity.makeToast("Email sent",getActivity().getApplicationContext());
                             } else {
                                 Log.d("forgotPassword", "Email not found.");
-                                Toast.makeText(getActivity().getApplicationContext(), "Email not found", Toast.LENGTH_SHORT).show();
+                                MainActivity.makeToast("Email not found",getActivity().getApplicationContext());
                             }
                         }
                     });
